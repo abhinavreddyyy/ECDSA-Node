@@ -1,66 +1,28 @@
-## Foundry
+## ECDSA Node
 
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
+This project begins with a client that is allowed to transfer any funds from any account to another account. That's not very secure. By applying digital signatures we can require that only the user with the appropriate private key can create a signature that will allow them to move funds from one account to the other. Then, the server can verify the signature to move funds from one account to another.
 
-Foundry consists of:
+* Incorporating Public Key Cryptography so transfers can only be completed with a valid signature
+* The person sending the transaction will have to verify that they own the private key corresponding to the address that is sending funds
 
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
+This project is an example of using a client and server to facilitate transfers between different addresses. Since there is just a single server on the back-end handling transfers, this is clearly very centralized.
 
-## Documentation
 
-https://book.getfoundry.sh/
+### Client
 
-## Usage
+The client folder contains a [react app](https://reactjs.org/) using [vite](https://vitejs.dev/). To get started, follow these steps:
 
-### Build
+1. Open up a terminal in the `/client` folder
+2. Run `npm install` to install all the depedencies
+3. Run `npm run dev` to start the application
+4. Now you should be able to visit the app at http://127.0.0.1:5173/
 
-```shell
-$ forge build
-```
+### Server
 
-### Test
+The server folder contains a node.js server using [express](https://expressjs.com/). To run the server, follow these steps:
 
-```shell
-$ forge test
-```
+1. Open a terminal within the `/server` folder
+2. Run `npm install` to install all the depedencies
+3. Run `node index` to start the server
 
-### Format
-
-```shell
-$ forge fmt
-```
-
-### Gas Snapshots
-
-```shell
-$ forge snapshot
-```
-
-### Anvil
-
-```shell
-$ anvil
-```
-
-### Deploy
-
-```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
-```
-
-### Cast
-
-```shell
-$ cast <subcommand>
-```
-
-### Help
-
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+The application should connect to the default server port (3042) automatically!
